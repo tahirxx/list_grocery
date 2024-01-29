@@ -1,13 +1,15 @@
-import React from 'react'
-import { FaEdit, FaTrash} from 'react-icon/fa';
+import React from 'react';
+import { FaEdit, FaTrash } from 'react-icons/fa';
 
 
-export default function List({ items }) {
+export default function List({ items, removeItem }) {
     return (
         <div className='grocery-list'>
             {items.map((item) => {
                 const { id, title } = item;
-                return <article key={id} className="grocery-item">
+
+                return (
+                <article key={id} className="grocery-item">
                     <p className='title'>
                         {title}
                     </p>
@@ -16,13 +18,14 @@ export default function List({ items }) {
                             <FaEdit />
                         </button>
 
-                        <button type="button" className='delete-btn'>
+                        <button type="button" className='delete-btn' onClick={() => removeItem(id)}>
                             <FaTrash />
                         </button>
 
                     </div>
 
                 </article>
+                )
             })}
         </div>
     )
